@@ -1,0 +1,20 @@
+(rule
+ (targets test.output)
+ (deps
+  (source_tree .)
+  (glob_files repo/*/dunolint)
+  (glob_files repo/*/lib/dune)
+  (glob_files repo/*/dune-project)
+  dunolint
+  lib/dune
+  dune-project
+  test.sh)
+ (action
+  (with-outputs-to
+   %{targets}
+   (run bash test.sh))))
+
+(rule
+ (alias runtest)
+ (action
+  (diff test.expected test.output)))

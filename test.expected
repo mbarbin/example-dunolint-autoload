@@ -1,0 +1,208 @@
+=== Test 1: Run dunolint from root directory ===
+Expected: Root config should be loaded and applied
+
+dry-run: Would edit file "dune-project":
+-1,5 +1,5
+  (lang dune 3.18)
+  
+  (name dunolint_test_root)
+  
+-|(implicit_transitive_deps true)
++|(implicit_transitive_deps false)
+
+dry-run: Would edit file "lib/dune":
+-1,2 +1,4
+  (library
+!| (name root_lib)
+!| (instrumentation
+!|  (backend bisect_ppx)))
+
+dry-run: Would edit file "repo/bar/dune-project":
+-1,5 +1,5
+  (lang dune 3.18)
+  
+  (name bar)
+  
+-|(implicit_transitive_deps false)
++|(implicit_transitive_deps true)
+
+dry-run: Would edit file "repo/bar/lib/dune":
+-1,2 +1,4
+  (library
+!| (name bar_lib)
+!| (instrumentation
+!|  (backend bisect_ppx)))
+
+dry-run: Would edit file "repo/foo/dune-project":
+-1,5 +1,5
+  (lang dune 3.18)
+  
+  (name foo)
+  
+-|(implicit_transitive_deps true)
++|(implicit_transitive_deps false)
+
+dry-run: Would edit file "repo/foo/lib/dune":
+-1,2 +1,4
+  (library
+-| (name wrong_name))
++| (name foo_lib)
++| (instrumentation
++|  (backend bisect_ppx)))
+
+=== Test 2: Run dunolint with --below lib (from root) ===
+Expected: Only check lib/, applying root config
+
+dry-run: Would edit file "lib/dune":
+-1,2 +1,4
+  (library
+!| (name root_lib)
+!| (instrumentation
+!|  (backend bisect_ppx)))
+
+=== Test 3: Run dunolint with --below repo/foo (from root) ===
+Expected: Check repo/foo/, should load foo's config
+
+dry-run: Would edit file "repo/foo/dune-project":
+-1,5 +1,5
+  (lang dune 3.18)
+  
+  (name foo)
+  
+-|(implicit_transitive_deps true)
++|(implicit_transitive_deps false)
+
+dry-run: Would edit file "repo/foo/lib/dune":
+-1,2 +1,4
+  (library
+-| (name wrong_name))
++| (name foo_lib)
++| (instrumentation
++|  (backend bisect_ppx)))
+
+=== Test 4: Run dunolint with --below repo/bar (from root) ===
+Expected: Check repo/bar/, should load bar's config
+
+dry-run: Would edit file "repo/bar/dune-project":
+-1,5 +1,5
+  (lang dune 3.18)
+  
+  (name bar)
+  
+-|(implicit_transitive_deps false)
++|(implicit_transitive_deps true)
+
+dry-run: Would edit file "repo/bar/lib/dune":
+-1,2 +1,4
+  (library
+!| (name bar_lib)
+!| (instrumentation
+!|  (backend bisect_ppx)))
+
+=== Test 5: Run dunolint from repo/foo (foo as root) ===
+Expected: Foo config as root, should apply foo-specific rules
+
+Entering directory '/home/mathieu/dev/test/dunolint-autoload'
+dry-run: Would edit file "dune-project":
+-1,5 +1,5
+  (lang dune 3.18)
+  
+  (name dunolint_test_root)
+  
+-|(implicit_transitive_deps true)
++|(implicit_transitive_deps false)
+
+dry-run: Would edit file "lib/dune":
+-1,2 +1,4
+  (library
+!| (name root_lib)
+!| (instrumentation
+!|  (backend bisect_ppx)))
+
+dry-run: Would edit file "repo/bar/dune-project":
+-1,5 +1,5
+  (lang dune 3.18)
+  
+  (name bar)
+  
+-|(implicit_transitive_deps false)
++|(implicit_transitive_deps true)
+
+dry-run: Would edit file "repo/bar/lib/dune":
+-1,2 +1,4
+  (library
+!| (name bar_lib)
+!| (instrumentation
+!|  (backend bisect_ppx)))
+
+dry-run: Would edit file "repo/foo/dune-project":
+-1,5 +1,5
+  (lang dune 3.18)
+  
+  (name foo)
+  
+-|(implicit_transitive_deps true)
++|(implicit_transitive_deps false)
+
+dry-run: Would edit file "repo/foo/lib/dune":
+-1,2 +1,4
+  (library
+-| (name wrong_name))
++| (name foo_lib)
++| (instrumentation
++|  (backend bisect_ppx)))
+
+=== Test 6: Run dunolint from repo/bar (bar as root) ===
+Expected: Bar config as root, should apply bar-specific rules
+
+Entering directory '/home/mathieu/dev/test/dunolint-autoload'
+dry-run: Would edit file "dune-project":
+-1,5 +1,5
+  (lang dune 3.18)
+  
+  (name dunolint_test_root)
+  
+-|(implicit_transitive_deps true)
++|(implicit_transitive_deps false)
+
+dry-run: Would edit file "lib/dune":
+-1,2 +1,4
+  (library
+!| (name root_lib)
+!| (instrumentation
+!|  (backend bisect_ppx)))
+
+dry-run: Would edit file "repo/bar/dune-project":
+-1,5 +1,5
+  (lang dune 3.18)
+  
+  (name bar)
+  
+-|(implicit_transitive_deps false)
++|(implicit_transitive_deps true)
+
+dry-run: Would edit file "repo/bar/lib/dune":
+-1,2 +1,4
+  (library
+!| (name bar_lib)
+!| (instrumentation
+!|  (backend bisect_ppx)))
+
+dry-run: Would edit file "repo/foo/dune-project":
+-1,5 +1,5
+  (lang dune 3.18)
+  
+  (name foo)
+  
+-|(implicit_transitive_deps true)
++|(implicit_transitive_deps false)
+
+dry-run: Would edit file "repo/foo/lib/dune":
+-1,2 +1,4
+  (library
+-| (name wrong_name))
++| (name foo_lib)
++| (instrumentation
++|  (backend bisect_ppx)))
+
+=== All tests completed ===

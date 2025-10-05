@@ -1,0 +1,10 @@
+;; Bar-specific dunolint config - different overrides
+(lang dunolint 1.0)
+
+;; Override: allow implicit_transitive_deps to be true for bar (overrides root)
+(rule
+ (enforce (dune_project (implicit_transitive_deps (equals true)))))
+
+;; Override: specific name for bar
+(rule
+ (enforce (dune (library (name (equals bar_lib))))))

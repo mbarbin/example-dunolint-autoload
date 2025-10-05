@@ -1,0 +1,14 @@
+;; Root dunolint config - defines base rules
+(lang dunolint 1.0)
+
+;; Base rule for dune-project: enforce implicit_transitive_deps false
+(rule
+ (enforce (dune_project (implicit_transitive_deps (equals false)))))
+
+;; Combinable rule: enforce instrumentation everywhere
+(rule
+ (enforce (dune (instrumentation (backend bisect_ppx)))))
+
+;; Base rule: library names should end with _lib
+(rule
+ (enforce (dune (library (name (is_suffix _lib))))))

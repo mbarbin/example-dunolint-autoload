@@ -1,0 +1,6 @@
+;; Foo-specific dunolint config - overrides and adds rules
+(lang dunolint 1.0)
+
+;; Override: specific name requirement for foo
+(rule
+ (enforce (dune (library (name (equals foo_lib))))))

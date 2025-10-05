@@ -1,0 +1,5 @@
+(lang dune 3.18)
+
+(name bar)
+
+(implicit_transitive_deps false)
