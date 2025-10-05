@@ -1,5 +1,9 @@
 # Dunolint Autoload Config Test Repository
 
+> **⚠️ Example Repository**
+> This is a demonstration/example repository showing how dunolint's config autoloading feature works.
+> **Not an official dunolint repository.** Created for educational and testing purposes.
+
 This repository tests the dunolint autoloading config feature, which allows dunolint to automatically discover and apply configuration files from different levels of the project hierarchy.
 
 ## Repository Structure
